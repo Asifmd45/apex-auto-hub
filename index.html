@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Auto Hub - Premier Auto Sales & Service Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0a2463;
+            --accent-blue: #1e40af;
+            --metallic-grey: #5f6368;
+            --light-grey: #f5f5f7;
+            --accent-orange: #ff6b35;
+            --accent-red: #dc2626;
+            --white: #ffffff;
+            --dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 36, 99, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        .nav-cta {
+            background: var(--accent-orange);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-red);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(to bottom, 
+                        rgba(0, 0, 0, 0.3) 0%,
+                        rgba(0, 0, 0, 0.5) 50%,
+                        rgba(10, 36, 99, 0.7) 100%),
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 60%, rgba(255, 107, 53, 0.15) 0%, transparent 60%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            padding: 0 2rem;
+            text-align: center;
+            color: var(--white);
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-cta-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.4s backwards;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary, .cta-secondary {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: var(--accent-orange);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .cta-primary:hover {
+            background: var(--accent-red);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .cta-secondary:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        .promo-banner {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .promo-banner p {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .promo-highlight {
+            color: var(--accent-orange);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-orange);
+            margin: 1rem auto 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Featured Inventory */
+        .inventory {
+            background: var(--light-grey);
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .vehicle-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .vehicle-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--metallic-grey), var(--primary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vehicle-image::before {
+            content: '🚗';
+            font-size: 4rem;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .vehicle-info {
+            padding: 1.5rem;
+        }
+
+        .vehicle-info h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .vehicle-specs {
+            color: var(--metallic-grey);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .vehicle-price {
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .vehicle-cta {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .vehicle-cta:hover {
+            background: var(--accent-blue);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            border-top-color: var(--accent-orange);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .service-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--metallic-grey);
+            line-height: 1.8;
+        }
+
+        /* Financing Section */
+        .financing {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            color: var(--white);
+        }
+
+        .financing .section-title {
+            color: var(--white);
+        }
+
+        .financing-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .financing-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .financing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .financing-features li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .financing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .financing-cta {
+            background: var(--accent-orange);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .financing-cta:hover {
+            background: var(--accent-red);
+            transform: translateY(-2px);
+        }
+
+        .financing-image {
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 5rem;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            background: var(--light-grey);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-box {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-box h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-box p {
+            color: var(--metallic-grey);
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--accent-orange);
+            opacity: 0.3;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .author-info h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: var(--metallic-grey);
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            color: var(--accent-orange);
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-orange);
+        }
+
+        .footer-section p, .footer-section li {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-icon {
+            font-size: 1.3rem;
+        }
+
+        .hours-table {
+            width: 100%;
+        }
+
+        .hours-table td {
+            padding: 0.5rem 0;
+        }
+
+        .hours-table td:first-child {
+            font-weight: 600;
+        }
+
+        .hours-table td:last-child {
+            text-align: right;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--primary-blue);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-cta-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .financing-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">A</div>
+                <span>Apex Auto Hub</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inventory">Inventory</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#financing">Financing</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Get Started</a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your Trusted Auto Partner</h1>
+            <p class="hero-subtitle">Premium Sales | Expert Service | Unmatched Performance</p>
+            <div class="hero-cta-container">
+                <a href="#services" class="cta-primary">Schedule Service</a>
+                <a href="#inventory" class="cta-secondary">Request Sales Quote</a>
+            </div>
+            <div class="promo-banner">
+                <p>🎉 Limited Time: <span class="promo-highlight">0% APR Financing</span> + Free First Service!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Inventory -->
+    <section id="inventory" class="inventory">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Inventory</h2>
+            <div class="inventory-grid">
+                <div class="vehicle-card fade-in">
+                    <div class="vehicle-image"></div>
+                    <div class="vehicle-info">
+                        <h3>2024 Luxury Sedan</h3>
+                        <p class="vehicle-specs">2.0L Turbo • AWD • Leather Interior</p>
+                        <p class="vehicle-price">$42,995</p>
+                        <button class="vehicle-cta">Request Quote</button>
+                    </div>
+                </div>
+                <div class="vehicle-card fade-in">
+                    <div class="vehicle-image"></div>
+                    <div class="vehicle-info">
+                        <h3>2024 Performance SUV</h3>
+                        <p class="vehicle-specs">3.5L V6 • 4WD • Premium Tech</p>
+                        <p class="vehicle-price">$56,750</p>
+                        <button class="vehicle-cta">Request Quote</button>
+                    </div>
+                </div>
+                <div class="vehicle-card fade-in">
+                    <div class="vehicle-image"></div>
+                    <div class="vehicle-info">
+                        <h3>2024 Electric Hatchback</h3>
+                        <p class="vehicle-specs">300 Mile Range • Fast Charge • Eco+</p>
+                        <p class="vehicle-price">$38,500</p>
+                        <button class="vehicle-cta">Request Quote</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title fade-in">Expert Service Offerings</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔧</div>
+                    <h3>Routine Maintenance</h3>
+                    <p>Oil changes, tire rotations, fluid checks, and preventive care to keep your vehicle running smoothly.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Engine & Transmission</h3>
+                    <p>Expert diagnostics and repairs for all engine and transmission issues using state-of-the-art equipment.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Safety Inspections</h3>
+                    <p>Comprehensive multi-point inspections ensuring your vehicle meets all safety standards.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔋</div>
+                    <h3>Electrical Systems</h3>
+                    <p>Battery testing, alternator repairs, and complete electrical system diagnostics and service.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">❄️</div>
+                    <h3>Climate Control</h3>
+                    <p>AC recharging, heating system repairs, and complete climate control maintenance.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🚗</div>
+                    <h3>Collision Repair</h3>
+                    <p>Professional body work, paint matching, and structural repairs to restore your vehicle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financing Section -->
+    <section id="financing" class="financing">
+        <div class="container">
+            <h2 class="section-title fade-in">Financing & Special Deals</h2>
+            <div class="financing-content">
+                <div class="financing-info fade-in">
+                    <h3>Drive Home Today with Easy Financing</h3>
+                    <p>We work with top lenders to secure the best rates for your budget. Get pre-approved in minutes!</p>
+                    <ul class="financing-features">
+                        <li>Competitive rates as low as 0% APR</li>
+                        <li>Flexible terms from 24-84 months</li>
+                        <li>Trade-in value maximization</li>
+                        <li>Special military & student discounts</li>
+                        <li>Quick online pre-approval</li>
+                    </ul>
+                    <button class="financing-cta">Apply Now</button>
+                </div>
+                <div class="financing-image fade-in">
+                    💳
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-choose" class="why-choose">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Choose Apex Auto Hub</h2>
+            <div class="features-grid">
+                <div class="feature-box fade-in">
+                    <div class="feature-icon">🏆</div>
+                    <h3>25+ Years Experience</h3>
+                    <p>Industry-leading expertise you can trust</p>
+                </div>
+                <div class="feature-box fade-in">
+                    <div class="feature-icon">✅</div>
+                    <h3>Certified Technicians</h3>
+                    <p>ASE-certified professionals on every job</p>
+                </div>
+                <div class="feature-box fade-in">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Lifetime Warranty</h3>
+                    <p>All repairs backed by our guarantee</p>
+                </div>
+                <div class="feature-box fade-in">
+                    <div class="feature-icon">💰</div>
+                    <h3>Transparent Pricing</h3>
+                    <p>No hidden fees, upfront estimates</p>
+                </div>
+                <div class="feature-box fade-in">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Latest Technology</h3>
+                    <p>State-of-the-art diagnostic equipment</p>
+                </div>
+                <div class="feature-box fade-in">
+                    <div class="feature-icon">⭐</div>
+                    <h3>5-Star Service</h3>
+                    <p>Rated #1 in customer satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title fade-in">What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <p class="testimonial-content">Absolutely outstanding service! The team went above and beyond to help me find the perfect vehicle within my budget. The financing process was seamless.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah Martinez</h4>
+                            <p>Purchased 2024 Sedan</p>
+                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-card fade-in">
+                        <p class="testimonial-content">The service department is top-notch. Quick turnaround and honest pricing. They kept me updated throughout the repair process — highly recommend.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JR</div>
+                            <div class="author-info">
+                                <h4>Jason Roberts</h4>
+                                <p>Service & Repair</p>
+                                <div class="rating">⭐⭐⭐⭐⭐</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <p class="testimonial-content">Bought my EV here and the buying experience was painless. The team explained charging options and the warranty clearly. Friendly staff!</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">LK</div>
+                            <div class="author-info">
+                                <h4>Linda Kim</h4>
+                                <p>Purchased 2024 Electric Hatchback</p>
+                                <div class="rating">⭐⭐⭐⭐⭐</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title fade-in">Contact & Location</h2>
+                <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;">
+                    <div class="contact-info fade-in">
+                        <p style="color:var(--metallic-grey);margin-bottom:1rem;">Reach out to schedule a test drive, service appointment, or get financing assistance. Our team is ready to help.</p>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <strong>Apex Auto Hub</strong>
+                                <div style="color:var(--metallic-grey);">1234 Motor Way, AutoCity, ST 56789</div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <a href="tel:+1234567890" style="color:inherit;text-decoration:none;">(123) 456-7890</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <a href="mailto:info@apexautohub.com" style="color:inherit;text-decoration:none;">info@apexautohub.com</a>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top:1.5rem;color:var(--primary-blue);">Business Hours</h4>
+                        <table class="hours-table">
+                            <tbody>
+                                <tr><td>Mon - Fri</td><td>8:00 AM — 7:00 PM</td></tr>
+                                <tr><td>Sat</td><td>9:00 AM — 5:00 PM</td></tr>
+                                <tr><td>Sun</td><td>Closed</td></tr>
+                            </tbody>
+                        </table>
+
+                        <div style="margin-top:1rem;">
+                            <a href="#services" class="cta-secondary" style="margin-right:0.5rem;">Book Service</a>
+                            <a href="#inventory" class="cta-primary">View Inventory</a>
+                        </div>
+                    </div>
+
+                    <div class="fade-in" style="min-height:220px;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.08);">
+                        <!-- Simple map placeholder -->
+                        <iframe title="Apex Auto Hub location" src="https://maps.google.com/maps?q=40.7128,-74.0060&z=14&output=embed" style="width:100%;height:100%;border:0;min-height:220px;" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>Apex Auto Hub delivers premium vehicles and exceptional service. Trust our experienced team to keep you moving.</p>
+                    <div class="social-links">
+                        <a class="social-link" href="#" aria-label="Facebook">f</a>
+                        <a class="social-link" href="#" aria-label="Twitter">t</a>
+                        <a class="social-link" href="#" aria-label="Instagram">📸</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#inventory" style="color:inherit;text-decoration:none;">Inventory</a></li>
+                        <li><a href="#services" style="color:inherit;text-decoration:none;">Services</a></li>
+                        <li><a href="#financing" style="color:inherit;text-decoration:none;">Financing</a></li>
+                        <li><a href="#contact" style="color:inherit;text-decoration:none;">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>(123) 456-7890</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>info@apexautohub.com</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>1234 Motor Way, AutoCity, ST</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Hours</h3>
+                    <table class="hours-table">
+                        <tbody>
+                            <tr><td>Mon - Fri</td><td>8:00 AM — 7:00 PM</td></tr>
+                            <tr><td>Sat</td><td>9:00 AM — 5:00 PM</td></tr>
+                            <tr><td>Sun</td><td>Closed</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; <span id="year"></span> Apex Auto Hub — All rights reserved.
+            </div>
+        </footer>
+
+        <script>
+            // Mobile menu toggle
+            (function() {
+                var menuToggle = document.getElementById('menuToggle');
+                var navLinks = document.getElementById('navLinks');
+                menuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+
+                // Close mobile menu when a link is clicked
+                navLinks.querySelectorAll('a').forEach(function(a) {
+                    a.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                    });
+                });
+            })();
+
+            // Smooth scroll for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    var targetId = this.getAttribute('href').substring(1);
+                    var target = document.getElementById(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // Fade-in on scroll using IntersectionObserver
+            (function() {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.15 });
+
+                document.querySelectorAll('.fade-in').forEach(function(el) {
+                    observer.observe(el);
+                });
+            })();
+
+            // Update copyright year
+            document.getElementById('year').textContent = new Date().getFullYear();
+        </script>
+        <script>
+        (function(){
+            var hero = document.querySelector('.hero');
+            if (!hero) return;
+            hero.style.backgroundImage = "linear-gradient(rgba(10,36,99,0.7), rgba(10,36,99,0.7)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&q=80')";
+            hero.style.backgroundSize = "cover";
+            hero.style.backgroundPosition = "center";
+        })();
+        </script>
+        <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq1d380d71822aea566ac8e629a568b468a71172cba04be8308f56d6b8ea345dcd" defer></script>
+    </body>
+    </html></div>
