@@ -2,11 +2,11 @@
 
 ![Demo](assets/demo.gif)
 
-##ScreenShot1
+## ScreenShot1
 
 ![Home Page](assets/img1.png)
 
-##ScreenShot1
+## ScreenShot2
 ![Home Page](assets/img2.png)
 
 
